@@ -4,7 +4,7 @@ var uniform_test = function(){
 	};
 	
 	this.test_random = function(data_gen_class, label){
-		var world = new Field(102, 102, 2, 2);
+		var world = new Field(102, 102, 4, 4);
 		var u = new data_gen_class(world,  'spat_autotests');
 		
 		for(var i = 0; i < 1000; i++){
@@ -18,7 +18,7 @@ var uniform_test = function(){
 		
 		var data_num = 1000;
 		var field_edge = 10000;
-		var world = new Field(field_edge/2, field_edge/2, field_edge/2, field_edge/2);
+		var world = new Field(field_edge/2, field_edge/2, field_edge, field_edge);
 		
 		var u = new data_gen_class(world, 'spat_autotests');
 		u.generate_data(data_num);
