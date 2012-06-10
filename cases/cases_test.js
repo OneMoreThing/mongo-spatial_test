@@ -1,4 +1,4 @@
-var near_test = function(){
+var case_test = function(){
 	
 	this.setUp = function(){
 		db.spat_autotests.drop();
@@ -50,4 +50,4 @@ var near_test = function(){
 	
 };
 
-new near_test();
+new case_test();
