@@ -1,19 +1,43 @@
+/**
+ * Data generators file. Classes used to generate points in database.
+ * Every class has to implement generate_data(num_of_points) method which generates points
+ * and saves them to database as objects. {'x' :123, 'y':456'}
+ */
+
+
+
+
+/**
+ * Field helper class - class to describe field/box we are working on.
+ * In other words describe world boundaries
+ */
+var Field = function(center_x, center_y, width_x, width_y){
+	this.center_x = center_x;
+	this.center_y = center_y;
+	this.width_x = width_x;
+	this.width_y = width_y;
+};
+
+
+
 
 /**
  * UniformDataGenerator class - generates uniformly distributed points and
  * saves it to database
  * 
  */
-
-var UniformDataGenerator = function(min_x, min_y, max_x, max_y, collection){
-	this.init(min_x, min_y, max_x, max_y, collection);
+var UniformDataGenerator = function(field, collection){
+	if(typeof field == 'undefined'){
+		return;
+	}
+	this.init(field, collection);
 };
 
-UniformDataGenerator.prototype.init = function(min_x, min_y, max_x, max_y, collection){
-	this.max_x = max_x;
-	this.max_y = max_y;
-	this.min_x = min_x;
-	this.min_y = min_y;
+UniformDataGenerator.prototype.init = function(field, collection){
+	this.max_x = field.center_x + field.width_x/2;
+	this.max_y = field.center_y + field.width_y/2;
+	this.min_x = field.center_x - field.width_x/2;
+	this.min_y = field.center_y - field.width_y/2;
 	this.collection = collection;
 };
 
@@ -31,13 +55,14 @@ UniformDataGenerator.prototype.generate_data = function(num_of_points){
 };
 
 
+
 /**
  * NormalDataGenerator - generates normally (Gauss stuff) distributed data and
  * saves it to database
+ * 
  */
-
-var NormalDataGenerator = function(min_x, min_y, max_x, max_y, collection){
-	return UniformDataGenerator.prototype.init.call(this, min_x, min_y, max_x, max_y, collection);
+var NormalDataGenerator = function(field, collection){
+	return UniformDataGenerator.prototype.init.call(this, field, collection);
 };
 
 NormalDataGenerator.prototype = new UniformDataGenerator();
@@ -73,6 +98,7 @@ NormalDataGenerator.prototype.rand_point_in_range = function(){
 };
 
 NormalDataGenerator.prototype.normal_random = function(mean, variance) {
+	//making normally distributed random value from 2 uniformly distributed randoms
 	if (mean == undefined)
 		mean = 0.0;
 	if (variance == undefined)
@@ -87,9 +113,7 @@ NormalDataGenerator.prototype.normal_random = function(mean, variance) {
 	} while (S > 1);
 
 	X = Math.sqrt(-2 * Math.log(S) / S) * V1;
-	// Y = Math.sqrt(-2 * Math.log(S) / S) * V2;
 	X = mean + Math.sqrt(variance) * X;
-	// Y = mean + Math.sqrt(variance) * Y ;
 	return X;
 };
 
