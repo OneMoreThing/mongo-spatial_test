@@ -36,21 +36,28 @@ var uniform_test = function(){
 	//****************** actual tests ******************
 	this.test_uniform_random = function(){
 		this.test_random(UniformDataGenerator, 'uniform');
-	}();
+	};
 	
 	this.test_uniform_data = function(){
 		this.setUp();
 		this.test_data(UniformDataGenerator, 'uniform');
-	}();
+	};
 	
 	this.test_normal_random = function(){
 		this.test_random(NormalDataGenerator, 'normal');
-	}();
+	};
 	
 	this.test_normal_data = function(){
 		this.setUp();
 		this.test_data(NormalDataGenerator, 'normal');
-	}();
+	};
 	
-}();
+	this.test_uniform_random();
+	this.test_uniform_data();
+	this.test_normal_random();
+	this.test_normal_data();
+	
+};
+
+new uniform_test();
 
