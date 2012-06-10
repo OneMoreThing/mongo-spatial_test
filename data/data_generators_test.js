@@ -1,4 +1,4 @@
-var uniform_test = function(){
+var data_generators_test = function(){
 	this.setUp = function(){
 		db.spat_autotests.drop();
 	};
@@ -59,5 +59,5 @@ var uniform_test = function(){
 	
 };
 
-new uniform_test();
+new data_generators_test();
 
