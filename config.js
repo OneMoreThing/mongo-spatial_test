@@ -7,7 +7,7 @@ var config = function(){
 		'EXTENT': 768,
 		'INDEX_BITS_LIST': function(){
 				var index_bits_list = [];
-				for(var i = 1; i <= 12; i++){
+				for(var i = 1; i <= 10; i++){
 					index_bits_list.push(i);
 				}
 				return index_bits_list;
@@ -18,6 +18,7 @@ var config = function(){
 	                            {'cardinality': 10000, 'collection': 'spat2_test_10k'},
 	                            {'cardinality': 25000, 'collection': 'spat2_test_25k'},
 	                            {'cardinality': 50000, 'collection': 'spat2_test_50k'},
+	                            {'cardinality': 75000, 'collection': 'spat2_test_75k'},
 	                            {'cardinality': 100000, 'collection': 'spat2_test_100k'},
 //	                            {'cardinality': 500000, 'collection': 'spat2_test_500k'},
 	                            //{'cardinality': 1000000, 'collection': 'spat2_test_1kk'}
