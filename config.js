@@ -7,15 +7,20 @@ var config = function(){
 		'EXTENT': 768,
 		'INDEX_BITS_LIST': function(){
 				var index_bits_list = [];
-				for(var i = 0; i < 32; i++){
+				for(var i = 1; i <= 12; i++){
 					index_bits_list.push(i);
 				}
 				return index_bits_list;
 			}(),
-		'CARDINALITIES_LIST': [	{'cardinality': 1000, 'collection': 'spat_test_1k'},
-	                            {'cardinality': 10000, 'collection': 'spat_test_10k'},
-	                            {'cardinality': 100000, 'collection': 'spat_test_100k'},
-	                            {'cardinality': 1000000, 'collection': 'spat_test_1kk'}
+		'CARDINALITIES_LIST': [	
+		                       	{'cardinality': 1000, 'collection': 'spat2_test_1k'},
+		                       	{'cardinality': 5000, 'collection': 'spat2_test_5k'},
+	                            {'cardinality': 10000, 'collection': 'spat2_test_10k'},
+	                            {'cardinality': 25000, 'collection': 'spat2_test_25k'},
+	                            {'cardinality': 50000, 'collection': 'spat2_test_50k'},
+	                            {'cardinality': 100000, 'collection': 'spat2_test_100k'},
+//	                            {'cardinality': 500000, 'collection': 'spat2_test_500k'},
+	                            //{'cardinality': 1000000, 'collection': 'spat2_test_1kk'}
 	                            ]
 	};
 }();

@@ -33,6 +33,8 @@ var UniformDataGenerator = function(field, collection){
 	this.init(field, collection);
 };
 
+UniformDataGenerator.constructor = UniformDataGenerator;
+
 UniformDataGenerator.prototype.init = function(field, collection){
 	this.max_x = field.center_x + field.width_x/2;
 	this.max_y = field.center_y + field.width_y/2;

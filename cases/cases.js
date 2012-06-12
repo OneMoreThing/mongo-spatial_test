@@ -20,6 +20,8 @@ var NearCase = function(extent, world_box, test_points, collection){
 	
 };
 
+NearCase._name = 'NearCase';
+
 NearCase.prototype.init = function(extent, world_box, test_points, collection){
 	this.extent = extent;
 	this.collection = collection;
@@ -29,8 +31,8 @@ NearCase.prototype.init = function(extent, world_box, test_points, collection){
 
 NearCase.prototype.do_test = function(){
 	
-	_this = this;
-	last_error = 0;
+	var _this = this;
+	var last_error = 0;
 	var exec_time = 0;
 	var point_count = 0;
 	
@@ -51,7 +53,7 @@ NearCase.prototype.do_test = function(){
 
 NearCase.prototype.do_db_query = function(point){
 	return count_time_and_results(this, function(){
-		var found_points = db[this.collection].find({loc: {$near: [point.x, point.y]}}).limit(this.extent);
+		var found_points = db[this.collection].find({loc: {$near: [point.x, point.y]}}).limit(this.extent / 8);
 		return found_points;
 	});
 };
@@ -64,6 +66,8 @@ NearCase.prototype.do_db_query = function(point){
 var WithinRectCase = function(extent, world_box, test_points, collection){
 	NearCase.prototype.init.call(this, extent, world_box, test_points, collection);
 };
+
+WithinRectCase._name = 'WithinRectCase';
 
 WithinRectCase.prototype = new NearCase();
 WithinRectCase.constructor = WithinRectCase;
@@ -84,6 +88,8 @@ WithinRectCase.prototype.do_db_query = function(point){
 var WithinCircleCase = function(extent, world_box, test_points, collection){
 	NearCase.prototype.init.call(this, extent, world_box, test_points, collection);
 };
+
+WithinCircleCase._name = 'WithinCircleCase';
 
 WithinCircleCase.prototype = new NearCase();
 WithinCircleCase.constructor = WithinCircleCase; 
@@ -108,6 +114,8 @@ WithinCircleCase.prototype.do_db_query = function(point){
 var WithinHexagonCase = function(extent, world_box, test_points, collection){
 	NearCase.prototype.init.call(this, extent, world_box, test_points, collection);
 };
+
+WithinHexagonCase._name = 'WithinHexagonCase';
 
 WithinHexagonCase.prototype = new NearCase(); 
 WithinHexagonCase.constructor = WithinHexagonCase;

@@ -1,8 +1,8 @@
 var case_test = function(){
 	
 	this.setUp = function(){
-		//db.spat_autotests.drop();
-		this.world = new Field(5000, 5000, 10000, 10000);
+		
+		this.world = new Field(config['FIELD_EDGE'] / 2, config['FIELD_EDGE'] / 2, config['FIELD_EDGE'], config['FIELD_EDGE']);
 		/*
 		 * test points:
 		 *  _____
@@ -33,15 +33,14 @@ var case_test = function(){
 								'y': this.world.center_y - this.world.width_y / 2 + this.test_points_bar
 							}
 		                   ];
-//		var uni_gen = new UniformDataGenerator(this.world, 'spat_autotests');
-//		uni_gen.generate_data(1000000);
-//		db['spat_autotests'].ensureIndex({ loc: "2d"}, {min: 0, max: 10000, bits: 26});
+
 	};
 	
 	this.do_test_test = function(case_class, label, extent){
+		print('START');
 		extent = extent || this.test_points_bar;
 		
-		var my_case = new case_class(extent, this.world, this.test_points, 'spat_autotests');
+		var my_case = new case_class(extent, this.world, this.test_points, 'spat_autotests_bits_5');
 		ret = my_case.do_test();
 		assert(ret != null);
 		print('OK - test ' + label + ' in: '+ret.millis+'ms. and ' + ret.count + ' objects found ');
