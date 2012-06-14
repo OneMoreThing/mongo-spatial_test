@@ -22,4 +22,4 @@ var create_data = function(data_generator_class, collection_name_prefix){
 	
 };
 
-create_data(UniformDataGenerator);
+create_data(NormalDataGenerator);
